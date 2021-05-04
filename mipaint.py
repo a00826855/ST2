@@ -35,11 +35,22 @@ def square(start, end):
 
 def circle(start, end):
     "Draw circle from start to end."
-    pass  # TODO
+    distancia = end.x - start.x
+    circle(distancia);
 
 def rectangle(start, end):
     "Draw rectangle from start to end."
-    pass  # TODO
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+    
+    for count in range(4):
+        forward(end.x - start.x)
+        left(90)
+        
+    end_fil()
+    
 
 def triangle(start, end):
     "Draw triangle from start to end."
