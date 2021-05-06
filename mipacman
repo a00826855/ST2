@@ -203,12 +203,12 @@ tracer(False)
 
 # nombre y matricuka
 writer.up()
-writer.goto(-190,-190)
+writer.goto(-160,-190)
 writer.color('white')
 writer.write('Alexandra Beatie Hurtado A00826855', align='left', font=('Arial', 8, 'normal'))
 
 # Mueve la turtle writer a la posición (160,160)
-writer.goto(50, 190)
+writer.goto(107, 190)
 writer.color('white')
 writer.write(state['score'])
 
