@@ -8,10 +8,13 @@ food = vector(0, 0)
 snake = [vector(10, 0)] # snake es una lista de vectores (direcciones)
 aim = vector(0, -10)
 # lista de colores
-colores = ['green', 'pink', 'yellow', 'blue', 'orange']
+colores = ['orange', 'green', 'blue', 'purple', 'pink']
 # escoje color aleatorio
 c1 = random.choice(colores)
-c2 = random.choice(colores)        
+c2 = random.choice(colores)
+
+if (c1 == c2) :
+    c2 = random.choice(colores)
 
 def change(x, y):
     # cambia direccion del snake
@@ -48,6 +51,16 @@ def move():
         
     else:
         snake.pop(0)
+        # movimiento de la comida
+        if food.x <= -200 and food.y <= -200:
+            w = vector(randrange(0,11,10), randrange(0,11,10))
+        elif food.x <= -200 and food.y >= -200:
+            w = vector(randrange(0,11,10), randrange(0,11,10))
+        elif food.x >= -200 and food.y >= -200:
+            w = vector(randrange(0,11,10), randrange(0,11,10))
+        else: 
+            w = vector(randrange(0,11,10), randrange(0,11,10))
+        food.move(w)
         
 
     clear()
@@ -59,6 +72,7 @@ def move():
     #color de la comida del snake es aleatorio
     square(food.x, food.y, 9, c2)
     update()
+    
     
     # velocidad del snake, entre mas grande mas lento
     ontimer(move, 100) 
