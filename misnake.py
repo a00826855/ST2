@@ -1,4 +1,5 @@
 from turtle import *
+import random
 from random import randrange
 from freegames import square, vector
 
@@ -6,6 +7,11 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)] # snake es una lista de vectores (direcciones)
 aim = vector(0, -10)
+# lista de colores
+colores = ['green', 'pink', 'yellow', 'blue', 'orange']
+# escoje color aleatorio
+c1 = random.choice(colores)
+c2 = random.choice(colores)        
 
 def change(x, y):
     # cambia direccion del snake
@@ -21,7 +27,7 @@ def inside(head):
 def move():
     # mueve al snake 1 segmento en la direccion que esta apuntando 
     "Move snake forward one segment."
-    head = snake[-1].copy()
+    head = snake[-1].copy() # regresa copia del vector
     head.move(aim)
 
     if not inside(head) or head in snake:
@@ -35,24 +41,29 @@ def move():
 
     if head == food:
         print('Snake:', len(snake)) # imprime longitud del snake
+        
+        # determina posicion nueva del nuevo food, aleatoria dentro del rango
         food.x = randrange(-15, 15) * 10
         food.y = randrange(-15, 15) * 10
+        
     else:
         snake.pop(0)
+        
 
     clear()
-
+        
     for body in snake:
-        # color del snake es negro
-        square(body.x, body.y, 9, 'black') 
+        # color del snake es aleatorio
+        square(body.x, body.y, 9, c1) 
 
-    #color de la comida del snake es verde
-    square(food.x, food.y, 9, 'green')
+    #color de la comida del snake es aleatorio
+    square(food.x, food.y, 9, c2)
     update()
     
     # velocidad del snake, entre mas grande mas lento
     ontimer(move, 100) 
-
+    
+        
 # determina el tamano del area del juego
 setup(420, 420, 370, 0)
 
